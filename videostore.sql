@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 02 Avril 2015 à 09:33
+-- Généré le: Jeu 02 Avril 2015 à 10:13
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.16
 
@@ -37,10 +37,17 @@ CREATE TABLE IF NOT EXISTS `client` (
   `cp` int(5) NOT NULL,
   `city` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`id`, `mail`, `last_name`, `first_name`, `adresse`, `cp`, `city`, `phone`, `username`, `password`) VALUES
+(1, 'VerrillDuplessis@jourrapide.com ', 'Duplessis', 'Verrill', '90, Rue Frédéric Chopin', 27200, 'VERNON ', '02.33.88.84.19', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -57,11 +64,18 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `cp` int(11) NOT NULL,
   `city` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `magasin` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `employee`
+--
+
+INSERT INTO `employee` (`id`, `mail`, `last_name`, `first_name`, `adresse`, `cp`, `city`, `phone`, `username`, `password`, `magasin`) VALUES
+(1, 'admin@videostore.fr', 'Dupéré', 'Robert', '27, Rue de Strasbourg', 63100, 'CLERMONT-FERRAND', '04.06.05.23.12', 'admin', 'admin', 'VideoStore');
 
 -- --------------------------------------------------------
 
@@ -77,7 +91,14 @@ CREATE TABLE IF NOT EXISTS `magasin` (
   `city` varchar(255) NOT NULL,
   `phone` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `magasin`
+--
+
+INSERT INTO `magasin` (`id`, `name`, `adresse`, `cp`, `city`, `phone`) VALUES
+(1, 'VideoStore', '34, boulevard de Prague', 30000, 'Nimes', '04.26.01.56.89');
 
 -- --------------------------------------------------------
 
@@ -110,8 +131,17 @@ CREATE TABLE IF NOT EXISTS `video` (
   `genre` varchar(255) NOT NULL,
   `stock` int(11) NOT NULL,
   `price` double NOT NULL,
+  `jaquette` varchar(255) NOT NULL,
+  `synopsis` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `video`
+--
+
+INSERT INTO `video` (`id`, `title`, `relisateur`, `studio`, `parution`, `genre`, `stock`, `price`, `jaquette`, `synopsis`) VALUES
+(1, 'Interstellar', 'Christopher Nolan', 'Warner Bros', '2014-11-05', 'Science fiction', 5, 12, 'J_interstellar.jpg', 'Le film raconte les aventures d’un groupe d’explorateurs qui utilisent une faille récemment découverte dans l’espace-temps afin de repousser les limites humaines et partir à la conquête des distances astronomiques dans un voyage interstellaire.');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
