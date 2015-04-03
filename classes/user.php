@@ -84,5 +84,64 @@ Class User
 	{
 		
 	}
+	
+	/* Employee */
+	public function displayEmployee($magasin, $mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (Exception $e)
+		{
+			die('Erreur : ' . $e->getMessage());
+		}
+		$sql = $db->prepare('SELECT * FROM employee');
+		$sql->execute();
+		while ($donnees=$sql->fetch()){
+			echo 	"<tr>
+						<td>".$donnees['magasin']."</td>
+						<td>".$donnees['last_name']."</td>
+						<td>".$donnees['first_name']."</td>
+						<td>".$donnees['adresse']."</td>
+						<td>".$donnees['cp']."</td>
+						<td>".$donnees['city']."</td>
+						<td>".$donnees['phone']."</td>
+						<td>".$donnees['mail']."</td>
+					</tr>";
+		}
+	}
+	
+	
+	/* Client */
+	public function displayClient($mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (Exception $e)
+		{
+			die('Erreur : ' . $e->getMessage());
+		}
+		$sql = $db->prepare('SELECT * FROM client');
+		$sql->execute();
+		while ($donnees=$sql->fetch()){
+			echo 	"<tr>
+						<td>".$donnees['last_name']."</td>
+						<td>".$donnees['first_name']."</td>
+						<td>".$donnees['adresse']."</td>
+						<td>".$donnees['cp']."</td>
+						<td>".$donnees['city']."</td>
+						<td>".$donnees['phone']."</td>
+						<td>".$donnees['mail']."</td>
+					</tr>";
+		}
+	}
+
+	
+>>>>>>> 3c163c9d4d1100ae307118ed078f7de14c8d9b0c
 }
 ?>
