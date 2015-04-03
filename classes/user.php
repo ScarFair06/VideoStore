@@ -79,5 +79,10 @@ Class User
 			return $token;
 		}
 	}
+
+	public function inscription()
+	{
+		
+	}
 }
 ?>
