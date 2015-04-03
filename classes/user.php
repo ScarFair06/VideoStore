@@ -37,12 +37,12 @@ Class User
 			$this->type="client";
 		}
 	}
-
+/*
 	public function connexion($username,$password)
 	{
 		try
 		{
-			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
 			$db->query('SET NAMES utf8');
 			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
@@ -83,10 +83,20 @@ Class User
 			return $token;
 		}
 	}
-	
+	*/
 	
 	/* Employee */
 	public function displayEmployee($magasin, $mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (Exception $e)
+		{
+			die('Erreur : ' . $e->getMessage());
+		}
 		$sql = $db->prepare('SELECT * FROM employee');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
@@ -103,10 +113,19 @@ Class User
 		}
 	}
 	
-	public function addVideo
 	
 	/* Client */
 	public function displayClient($mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (Exception $e)
+		{
+			die('Erreur : ' . $e->getMessage());
+		}
 		$sql = $db->prepare('SELECT * FROM client');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
