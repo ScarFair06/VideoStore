@@ -594,6 +594,10 @@
 .light-blue.lighten-1 {
   background-color: #29b6f6 !important; }
 
+.light-red.lighten-1 {
+    background-color: #EE6E73 !important; }
+}
+
 .light-blue-text.text-lighten-1 {
   color: #29b6f6 !important; }
 

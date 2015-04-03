@@ -9,3 +9,9 @@
 .icon-block {
   padding: 0 15px;
 }
+
+#index-banner {
+    box-shadow: none;
+    background-color: #ee6e73;
+    color : #ffffff;
+}
