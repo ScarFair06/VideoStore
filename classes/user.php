@@ -51,34 +51,30 @@ Class User
 			die('Erreur : ' . $e->getMessage());
 		}
 		$sql='SELECT * FROM client WHERE username = :username AND password = :password';
-		$sql->bindParam(':username',$username);
-		$sql->bindParam(':password',$password);
-		$result = $db->prepare($sql);
-		$columns=$result->execute();
+		$result = $db->prepare($sql);		
+		$valeursParam = array(":username"=>$username,":password"=>$password);
+		$columns=$result->execute($valeursParam);
 		$columns = $result->fetch();
 		if(sizeof($columns)>1)
 		{
 			$token=rand(1,10000);
 			$token=md5($token);
 			$sql=$db->prepare('UPDATE client SET token = :token WHERE id = :id');
-			$sql->bindParam(':token',$token);
-			$sql->bindParam(':id', $columns['id']);
-			$sql->execute();
+			$valeursParam = array(":token"=>$token,":id"=>$columns['id']);
+			$sql->execute($valeursParam);
 			return $token;
 		}
 		$sql='SELECT * FROM employee WHERE username = :username AND password = :password';
-		$sql->bindParam(':username',$username);
-		$sql->bindParam(':password',$password);
+		$valeursParam = array(":username"=>$username,":password"=>$password);
 		$result = $db->prepare($sql);
-		$columns=$result->execute();
+		$columns=$result->execute($valeursParam);
 		$columns = $result->fetch();
 		if(sizeof($columns)>1)
 		{
 			$token=rand(1,10000);
 			$token=md5($token);
 			$sql=$db->prepare('UPDATE employee SET token = :token WHERE id = :id');
-			$sql->bindParam(':token',$token);
-			$sql->bindParam(':id', $columns['id']);
+			$valeursParam = array(":token"=>$token,":id"=>$columns['id']);
 			$sql->execute();
 			return $token;
 		}
