@@ -87,7 +87,46 @@ Class User
 			$sql->execute();
 			return $token;
 		}
-
 	}
+	
+	
+	/* Employee */
+	public function displayEmployee($magasin, $mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
+		$sql = $db->prepare('SELECT * FROM employee');
+		$sql->execute();
+		while ($donnees=$sql->fetch()){
+			echo 	"<tr>
+						<td>".$donnees['magasin']."</td>
+						<td>".$donnees['last_name']."</td>
+						<td>".$donnees['first_name']."</td>
+						<td>".$donnees['adresse']."</td>
+						<td>".$donnees['cp']."</td>
+						<td>".$donnees['city']."</td>
+						<td>".$donnees['phone']."</td>
+						<td>".$donnees['mail']."</td>
+					</tr>";
+		}
+	}
+	
+	public function addVideo
+	
+	/* Client */
+	public function displayClient($mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
+		$sql = $db->prepare('SELECT * FROM client');
+		$sql->execute();
+		while ($donnees=$sql->fetch()){
+			echo 	"<tr>
+						<td>".$donnees['last_name']."</td>
+						<td>".$donnees['first_name']."</td>
+						<td>".$donnees['adresse']."</td>
+						<td>".$donnees['cp']."</td>
+						<td>".$donnees['city']."</td>
+						<td>".$donnees['phone']."</td>
+						<td>".$donnees['mail']."</td>
+					</tr>";
+		}
+	}
+
+	
 }
 ?>
