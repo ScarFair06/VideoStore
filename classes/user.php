@@ -14,7 +14,7 @@ Class User
 	private $magasin;
 	private $type;
 
-	public function __construct($id, $mail, $first_name, $adresse, $cp, $city, $phone, $username, $password, $magasin)
+	public function __construct($id, $mail,$last_name, $first_name, $adresse, $cp, $city, $phone, $username, $password, $magasin)
 	{
 		$this->id = $id;
 		$this->mail=$mail;
@@ -26,23 +26,16 @@ Class User
 		$this->phone=$phone;
 		$this->username=$username;
 		$this->password=$password;
-		$this->magasin=$magasin;
-		$this->type="employee";
-	}
-
-	public function __construct($id, $mail, $first_name, $adresse, $cp, $city, $phone, $username, $password)
-	{
-		$this->id = $id;
-		$this->mail=$mail;
-		$this->last_name=$last_name;
-		$this->first_name=$first_name;
-		$this->adresse=$adresse;
-		$this->cp=$cp;
-		$this->city=$city;
-		$this->phone=$phone;
-		$this->username=$username;
-		$this->password=$password;
-		$this->type="client";
+		if($magasin != NULL)
+		{
+			$this->magasin=$magasin;			
+			$this->type="employee";
+		}
+		else
+		{
+			$this->magasin=NULL;
+			$this->type="client";
+		}
 	}
 
 	public function connexion($username,$password)
@@ -57,12 +50,13 @@ Class User
 		{
 			die('Erreur : ' . $e->getMessage());
 		}
-		$sql=$db->prepare('SELECT * FROM client WHERE username = :username AND password = :password');
+		$sql='SELECT * FROM client WHERE username = :username AND password = :password';
 		$sql->bindParam(':username',$username);
 		$sql->bindParam(':password',$password);
-		$sql->execute();
-		$columns = $sql->fetch();
-		if(sizeof($columns)=1)
+		$result = $db->prepare($sql);
+		$columns=$result->execute();
+		$columns = $result->fetch();
+		if(sizeof($columns)>1)
 		{
 			$token=rand(1,10000);
 			$token=md5($token);
@@ -72,12 +66,13 @@ Class User
 			$sql->execute();
 			return $token;
 		}
-		$sql=$db->prepare('SELECT * FROM employee WHERE username = :username AND password = :password');
+		$sql='SELECT * FROM employee WHERE username = :username AND password = :password';
 		$sql->bindParam(':username',$username);
 		$sql->bindParam(':password',$password);
-		$sql->execute();
-		$columns = $sql->fetch();
-		if(sizeof($columns)=1)
+		$result = $db->prepare($sql);
+		$columns=$result->execute();
+		$columns = $result->fetch();
+		if(sizeof($columns)>1)
 		{
 			$token=rand(1,10000);
 			$token=md5($token);
