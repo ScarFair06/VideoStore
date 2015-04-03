@@ -100,17 +100,18 @@ Class User
 		$sql = $db->prepare('SELECT * FROM employee');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
-			echo 	"<tr>
-						<td>".$donnees['magasin']."</td>
-						<td>".$donnees['last_name']."</td>
-						<td>".$donnees['first_name']."</td>
-						<td>".$donnees['adresse']."</td>
-						<td>".$donnees['cp']."</td>
-						<td>".$donnees['city']."</td>
-						<td>".$donnees['phone']."</td>
-						<td>".$donnees['mail']."</td>
-					</tr>";
+			$table=array(
+				'magasin' => $donnees['magasin'],
+				'mail' => $donnees['mail'],
+				'last_name' => $donnees['last_name'],
+				'first_name' => $donnees['first_name'],
+				'adresse' => $donnees['adresse'],
+				'cp' => $donnees['cp'],
+				'city' => $donnees['city'],
+				'phone' => $donnees['phone'],
+				);
 		}
+		return $table;
 	}
 	
 	
@@ -129,16 +130,17 @@ Class User
 		$sql = $db->prepare('SELECT * FROM client');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
-			echo 	"<tr>
-						<td>".$donnees['last_name']."</td>
-						<td>".$donnees['first_name']."</td>
-						<td>".$donnees['adresse']."</td>
-						<td>".$donnees['cp']."</td>
-						<td>".$donnees['city']."</td>
-						<td>".$donnees['phone']."</td>
-						<td>".$donnees['mail']."</td>
-					</tr>";
+			$table=array(
+				'mail' => $donnees['mail'],
+				'last_name' => $donnees['last_name'],
+				'first_name' => $donnees['first_name'],
+				'adresse' => $donnees['adresse'],
+				'cp' => $donnees['cp'],
+				'city' => $donnees['city'],
+				'phone' => $donnees['phone'],
+				);
 		}
+		return $table;
 	}
 }
 ?>
