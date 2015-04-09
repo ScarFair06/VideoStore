@@ -1,0 +1,38 @@
+@import url("http://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,600,400italic,600italic");
+
+.icon-block {
+  padding: 0 15px;
+}
+
+#index-banner {
+    box-shadow: none;
+    background-color: #ee6e73;
+    color : #ffffff;
+}
+
+nav .brand-logo {
+    color: #ffffff;
+    font-family: "Montserrat";
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    margin-left : 50px;
+    font-size: 1.5em;
+}
+
+.button-collapse{
+    height: 10%;
+}
+
+nav ul a {
+    font-family: "Montserrat";
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+@media only screen and (max-width : 992px) {
+    nav .brand-logo {
+    margin-left : 0;
+    }
+}
