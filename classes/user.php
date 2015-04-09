@@ -40,16 +40,7 @@ Class User
 
 	public static function connexion($username,$password)
 	{
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$sql='SELECT * FROM client WHERE username = :username AND password = :password';
 		$result = $db->prepare($sql);		
 		$valeursParam = array(":username"=>$username,":password"=>$password);
@@ -82,16 +73,7 @@ Class User
 
 	public function inscription()
 	{
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		if($this->type=="employee"){
 			$sql=$db->prepare('INSERT INTO employee (mail, last_name, first_name, adresse, cp, city, phone, username, password, magasin) VALUES (:mail, :last_name, :first_name, :adresse, :cp, :city, :phone, :username, :password, :magasin)');
 			$valeursParam = array(':mail' => $this->mail , ':last_name' => $this->last_name, ':first_name' => $this->first_name, ':adresse'=>$this->adresse, 'cp'=>$this->cp,':city'=>$this->city,':phone'=>$this->phone,':username'=>$this->username,':password'=>$this->password, ':magasin'=>$this->magasin);
@@ -107,16 +89,7 @@ Class User
 	
 	/* Employee */
 	public function displayEmployee($magasin, $mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$sql = $db->prepare('SELECT * FROM employee');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
@@ -137,16 +110,7 @@ Class User
 	
 	/* Client */
 	public function displayClient($mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$sql = $db->prepare('SELECT * FROM client');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
@@ -164,16 +128,7 @@ Class User
 	}
 
 	public function addLocation($id_video, $reservation){
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$id_client = $this->id;
 		if($this->type == "employee")
 		{
