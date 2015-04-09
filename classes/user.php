@@ -38,18 +38,9 @@ Class User
 		}
 	}
 
-	public function connexion($username,$password)
+	public static function connexion($username,$password)
 	{
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$sql='SELECT * FROM client WHERE username = :username AND password = :password';
 		$result = $db->prepare($sql);		
 		$valeursParam = array(":username"=>$username,":password"=>$password);
@@ -79,19 +70,26 @@ Class User
 			return $token;
 		}
 	}
+
+	public function inscription()
+	{
+		include('bdd.php');
+		if($this->type=="employee"){
+			$sql=$db->prepare('INSERT INTO employee (mail, last_name, first_name, adresse, cp, city, phone, username, password, magasin) VALUES (:mail, :last_name, :first_name, :adresse, :cp, :city, :phone, :username, :password, :magasin)');
+			$valeursParam = array(':mail' => $this->mail , ':last_name' => $this->last_name, ':first_name' => $this->first_name, ':adresse'=>$this->adresse, 'cp'=>$this->cp,':city'=>$this->city,':phone'=>$this->phone,':username'=>$this->username,':password'=>$this->password, ':magasin'=>$this->magasin);
+			$sql->execute($valeursParam);
+		}
+		elseif ($this->type=="client") {
+			$sql=$db->prepare('INSERT INTO client (mail, last_name, first_name, adresse, cp, city, phone, username, password ) VALUES (:mail, :last_name, :first_name, :adresse, :cp, :city, :phone, :username, :password)');
+			$valeursParam = array(':mail' => $this->mail , ':last_name' => $this->last_name, ':first_name' => $this->first_name, ':adresse'=>$this->adresse, 'cp'=>$this->cp, ':city'=>$this->cp,':city'=>$this->city,':phone'=>$this->phone,':username'=>$this->username,':password'=>$this->password);
+			$sql->execute($valeursParam);
+		}
+		
+	}
 	
 	/* Employee */
 	public function displayEmployee($magasin, $mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$sql = $db->prepare('SELECT * FROM employee');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
@@ -112,16 +110,7 @@ Class User
 	
 	/* Client */
 	public function displayClient($mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$sql = $db->prepare('SELECT * FROM client');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
@@ -136,6 +125,28 @@ Class User
 				);
 		}
 		return $table;
+	}
+
+	public function addLocation($id_video, $reservation){
+		include('bdd.php');
+		$id_client = $this->id;
+		if($this->type == "employee")
+		{
+			$ts = strtotime($reservation);
+			$unJour = 3600*24;
+			$ts +=3*$unJour;
+			$return = date('Y-m-d',$ts);
+			$sql = $db->prepare('INSERT INTO reservation (id_client, id_video, reservation, date_return, magasin_id) VALUES (:id_client, :id_video, :reservation, :return, :magasin_id)');
+			$valeursParam = array(":id_client"=>$this->id,":id_video"=>$id_video,":reservation"=>$reservation,":return"=>$return,":magasin_id"=>$this->magasin);
+			$sql->execute($valeursParam);
+			return 1; //OK
+		}
+		else{return 0;} //KO
+	}
+
+	public function relanceClient($titre, $message){
+		$message = wordwrap($message, 70, "\r\n");
+		mail($this->mail, $titre, $message);
 	}
 }
 ?>
