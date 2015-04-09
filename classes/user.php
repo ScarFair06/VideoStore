@@ -67,7 +67,7 @@ Class User
 			$sql=$db->prepare('UPDATE employee SET token = :token WHERE id = :id');
 			$valeursParam = array(":token"=>$token,":id"=>$columns['id']);
 			$sql->execute();
-			return $token;
+			return json_encode(array('token'=>$token));
 		}
 	}
 
@@ -87,61 +87,68 @@ Class User
 		
 	}
 	
-	/* Employee */
-	public function displayEmployee($magasin, $mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
-		include('bdd.php');
-		$sql = $db->prepare('SELECT * FROM employee');
-		$sql->execute();
-		while ($donnees=$sql->fetch()){
-			$table=array(
-				'magasin' => $donnees['magasin'],
-				'mail' => $donnees['mail'],
-				'last_name' => $donnees['last_name'],
-				'first_name' => $donnees['first_name'],
-				'adresse' => $donnees['adresse'],
-				'cp' => $donnees['cp'],
-				'city' => $donnees['city'],
-				'phone' => $donnees['phone'],
-				);
-		}
-		return $table;
-	}
-	
-	
-	/* Client */
-	public function displayClient($mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
-		include('bdd.php');
-		$sql = $db->prepare('SELECT * FROM client');
-		$sql->execute();
-		while ($donnees=$sql->fetch()){
-			$table=array(
-				'mail' => $donnees['mail'],
-				'last_name' => $donnees['last_name'],
-				'first_name' => $donnees['first_name'],
-				'adresse' => $donnees['adresse'],
-				'cp' => $donnees['cp'],
-				'city' => $donnees['city'],
-				'phone' => $donnees['phone'],
-				);
-		}
-		return $table;
-	}
-
 	public function addLocation($id_video, $reservation){
 		include('bdd.php');
 		$id_client = $this->id;
 		if($this->type == "employee")
 		{
-			$ts = strtotime($reservation);
-			$unJour = 3600*24;
-			$ts +=3*$unJour;
-			$return = date('Y-m-d',$ts);
-			$sql = $db->prepare('INSERT INTO reservation (id_client, id_video, reservation, date_return, magasin_id) VALUES (:id_client, :id_video, :reservation, :return, :magasin_id)');
-			$valeursParam = array(":id_client"=>$this->id,":id_video"=>$id_video,":reservation"=>$reservation,":return"=>$return,":magasin_id"=>$this->magasin);
+			$sql = $db->prepare('SELECT * FROM video WHERE id = :id_video');
+			$valeursParam=array(':id_video' => $id_video);
 			$sql->execute($valeursParam);
-			return 1; //OK
+			$video=$sql->fetch();
+
+			if($video['stock']>=1){
+
+				$ts = strtotime($reservation);
+				$unJour = 3600*24;
+				$ts +=3*$unJour;
+				$return = date('Y-m-d',$ts);
+
+				$sql = $db->prepare('INSERT INTO reservation (id_client, id_video, reservation, date_return, magasin_id) VALUES (:id_client, :id_video, :reservation, :return, :magasin_id)');
+				$valeursParam = array(":id_client"=>$this->id,":id_video"=>$id_video,":reservation"=>$reservation,":return"=>$return,":magasin_id"=>$this->magasin);
+				$sql->execute($valeursParam);
+
+				$stock = $video['stock']-1;
+				$sql = $db->prepare('UPDATE video SET stock = :stock WHERE id = :id');
+				$valeursParam = array(":stock"=>$stock, ":id"=>$id_video);
+				$sql->execute($valeursParam);
+
+			return json_encode(array('reponse'=>1));//OK
 		}
-		else{return 0;} //KO
+	}
+		else { return json_encode(array('reponse'=>$0));} //KO
+	}
+
+	public function dellLocation($id_reservation){
+		include('bdd.php');
+		//ID VIDEO
+		$sql=$db->prepare('SELECT id_video "id" FROM reservation WHERE id = :id');
+		$valeursParam = array(':id' =>$id_reservation);
+		$sql->execute($valeursParam);
+		$id_video=$sql->fetch();
+
+		//ID CLIENT
+		$id_client = $this->id;
+
+		//ID VIDEO
+		$sql = $db->prepare('SELECT * FROM video WHERE id = :id_video');
+		$valeursParam=array(':id_video' => $id_video['id']);
+		$sql->execute($valeursParam);
+		$video=$sql->fetch();
+
+		if($this->type == "employee")
+		{
+			$sql=$db->prepare('DELETE FROM reservation WHERE id = :id');
+			$valeursParam = array(":id"=>$id_reservation);
+			$sql->execute($valeursParam);
+			$stock = $video['stock']+1;
+			$sql = $db->prepare('UPDATE video SET stock = :stock WHERE id = :id');
+			$valeursParam = array(":stock"=>$stock, ":id"=>$id_video['id']);
+			$sql->execute($valeursParam);
+
+			return json_encode(array('reponse'=>1)); //OK
+		}
+		else{return json_encode(array('reponse'=>0));} //KO
 	}
 
 	public function relanceClient($titre, $message){

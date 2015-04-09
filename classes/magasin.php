@@ -20,7 +20,44 @@ Class Magasin
 
 	public function listEmployee()
 	{
-		
+		include('bdd.php');
+		$sql = $db->prepare('SELECT * FROM employee WHERE magasin = :magasin');
+		$valeursParam = array(':magasin' => $this->id);
+		$sql->execute($valeursParam);
+		$result = $sql->fetch();
+
+		return json_encode(array('result'=>$result));
+	}
+
+	public function listClient()
+	{
+		include('bdd.php');
+		$sql = $db->prepare('SELECT * FROM client');
+		$sql->execute();
+		$result = $sql->fetch();
+
+		return json_encode(array('result'=>$result));
+	}
+
+	public function listReservation()
+	{
+		include('bdd.php');
+		$sql = $db->prepare('SELECT * FROM reservation WHERE magasin_id = :magasin');
+		$valeursParam = array(':magasin' => $this->id);
+		$sql->execute($valeursParam);
+		$result = $sql->fetch();
+
+		return json_encode(array('result'=>$result));
+	}
+
+	public function listVideo()
+	{
+		include('bdd.php');
+		$sql = $db->prepare('SELECT * FROM video WHERE magasin_id = :magasin');
+		$valeursParam = array(':magasin' => $this->id);
+		$sql->execute($valeursParam);
+		$result = $sql->fetch();
+
+		return json_encode(array('result'=>$result));
 	}
 }
-?>
