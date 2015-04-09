@@ -38,7 +38,7 @@ Class User
 		}
 	}
 
-	public function connexion($username,$password)
+	public static function connexion($username,$password)
 	{
 		try
 		{
@@ -82,6 +82,26 @@ Class User
 
 	public function inscription()
 	{
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (Exception $e)
+		{
+			die('Erreur : ' . $e->getMessage());
+		}
+		if($this->type=="employee"){
+			$sql=$db->prepare('INSERT INTO employee (mail, last_name, first_name, adresse, cp, city, phone, username, password, magasin) VALUES (:mail, :last_name, :first_name, :adresse, :cp, :city, :phone, :username, :password, :magasin)');
+			$valeursParam = array(':mail' => $this->mail , ':last_name' => $this->last_name, ':first_name' => $this->first_name, ':adresse'=>$this->adresse, 'cp'=>$this->cp,':city'=>$this->city,':phone'=>$this->phone,':username'=>$this->username,':password'=>$this->password, ':magasin'=>$this->magasin);
+			$sql->execute($valeursParam);
+		}
+		elseif ($this->type=="client") {
+			$sql=$db->prepare('INSERT INTO client (mail, last_name, first_name, adresse, cp, city, phone, username, password ) VALUES (:mail, :last_name, :first_name, :adresse, :cp, :city, :phone, :username, :password)');
+			$valeursParam = array(':mail' => $this->mail , ':last_name' => $this->last_name, ':first_name' => $this->first_name, ':adresse'=>$this->adresse, 'cp'=>$this->cp, ':city'=>$this->cp,':city'=>$this->city,':phone'=>$this->phone,':username'=>$this->username,':password'=>$this->password);
+			$sql->execute($valeursParam);
+		}
 		
 	}
 	
@@ -139,6 +159,37 @@ Class User
 						<td>".$donnees['mail']."</td>
 					</tr>";
 		}
+	}
+
+	public function addLocation($id_video, $reservation){
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (Exception $e)
+		{
+			die('Erreur : ' . $e->getMessage());
+		}
+		$id_client = $this->id;
+		if($this->type == "employee")
+		{
+			$ts = strtotime($reservation);
+			$unJour = 3600*24;
+			$ts +=3*$unJour;
+			$return = date('Y-m-d',$ts);
+			$sql = $db->prepare('INSERT INTO reservation (id_client, id_video, reservation, date_return, magasin_id) VALUES (:id_client, :id_video, :reservation, :return, :magasin_id)');
+			$valeursParam = array(":id_client"=>$this->id,":id_video"=>$id_video,":reservation"=>$reservation,":return"=>$return,":magasin_id"=>$this->magasin);
+			$sql->execute($valeursParam);
+			return 1; //OK
+		}
+		else{return 0;} //KO
+	}
+
+	public function relanceClient($titre, $message){
+		$message = wordwrap($message, 70, "\r\n");
+		mail($this->mail, $titre, $message);
 	}
 }
 ?>
