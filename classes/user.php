@@ -79,11 +79,6 @@ Class User
 			return $token;
 		}
 	}
-
-	public function inscription()
-	{
-		
-	}
 	
 	/* Employee */
 	public function displayEmployee($magasin, $mail, $last_name, $first_name, $adresse, $cp, $city, $phone){
