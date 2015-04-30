@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<title>VideoStore</title>
+
+	<!-- CSS  -->
+	<link href="lib/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="lib/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+	<!--MENU-->
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#!" class="brand-logo">VIDEOSTORE</a>
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+			<ul class="right hide-on-med-and-down">
+				<li>
+					<form action='../videoStore/video' method='post'>
+						<div class="input-field">
+							<input id="search" type="search" required name='titre' placeholder='Search'>
+							<label for="search"><i class="mdi-action-search"></i></label>
+							<i class="mdi-navigation-close"></i>
+						</div>
+					</form>
+				</li>
+				<li><a href="../videoStore/videotech">Films</a></li>
+				<li><a href="components.html">Magasins</a></li>
+				<li><a href="../videoStore/connexion">Log-out</a></li>
+			</ul>
+			<ul class="side-nav" id="mobile-demo">
+				<li>
+					<form action='../videoStore/video' method='post'>
+						<div class="input-field">
+							<input id="search" type="search" required name='titre' placeholder='Search'>
+							<label for="search"><i class="mdi-action-search" style="color:black;"></i></label>
+						</div>
+					</form>
+				</li>
+				<li><a href="../videoStore/videotech">Films</a></li>
+				<li><a href="components.html">Magasins</a></li>
+				<li><a href="../videoStore/connexion">Log-out</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="row">
+		<h4>Nouveautés:</h4>
+		<div class="col s3">
+			<div class="card">
+				<div class="card-image waves-effect waves-block waves-light">
+					<a href='../videoStore/video?id=1'><img class="" src="lib/images/interstellar.jpg"></a>
+				</div>
+				<div class="card-content">
+					<span class="card-title activator grey-text text-darken-4">Nom <i class="mdi-navigation-more-vert right"></i></span>
+					<p><a href="../videoStore/connexion">Réserver</a></p>
+				</div>
+				<div class="card-reveal">
+					<span class="card-title grey-text text-darken-4">Nom <i class="mdi-navigation-close right"></i></span>
+					<p>Synopsis </p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="lib/js/materialize.js"></script>
+	<script src="lib/js/init.js"></script>
+
+</body>
+</html>
