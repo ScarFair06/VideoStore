@@ -14,9 +14,8 @@ Class User
 	private $magasin;
 	private $type;
 
-	public function __construct($id, $mail,$last_name, $first_name, $adresse, $cp, $city, $phone, $username, $password, $magasin)
+	public function __construct($mail,$last_name, $first_name, $adresse, $cp, $city, $phone, $username, $password, $magasin)
 	{
-		$this->id = $id;
 		$this->mail=$mail;
 		$this->last_name=$last_name;
 		$this->first_name=$first_name;
@@ -113,10 +112,10 @@ Class User
 				$valeursParam = array(":stock"=>$stock, ":id"=>$id_video);
 				$sql->execute($valeursParam);
 
-			return json_encode(array('reponse'=>1));//OK
+				return json_encode(array('reponse'=>1));//OK
+			}
 		}
-	}
-		else { return json_encode(array('reponse'=>$0));} //KO
+		else { return json_encode(array('reponse'=>0));} //KO
 	}
 
 	public function dellLocation($id_reservation){

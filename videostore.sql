@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 03 Avril 2015 à 14:59
+-- Généré le :  Jeu 30 Avril 2015 à 09:31
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 CREATE TABLE IF NOT EXISTS `video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `relisateur` varchar(255) NOT NULL,
+  `realisateur` varchar(255) NOT NULL,
   `studio` varchar(255) NOT NULL,
   `parution` date NOT NULL,
   `genre` varchar(255) NOT NULL,
@@ -137,14 +137,15 @@ CREATE TABLE IF NOT EXISTS `video` (
   `jaquette` varchar(255) NOT NULL,
   `synopsis` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Contenu de la table `video`
 --
 
-INSERT INTO `video` (`id`, `title`, `relisateur`, `studio`, `parution`, `genre`, `stock`, `price`, `jaquette`, `synopsis`) VALUES
-(1, 'Interstellar', 'Christopher Nolan', 'Warner Bros', '2014-11-05', 'Science fiction', 5, 12, 'J_interstellar.jpg', 'Le film raconte les aventures d’un groupe d’explorateurs qui utilisent une faille récemment découverte dans l’espace-temps afin de repousser les limites humaines et partir à la conquête des distances astronomiques dans un voyage interstellaire.');
+INSERT INTO `video` (`id`, `title`, `realisateur`, `studio`, `parution`, `genre`, `stock`, `price`, `jaquette`, `synopsis`) VALUES
+(1, 'Interstellar', 'Christopher Nolan', 'Warner Bros', '2014-11-05', 'Science fiction', 5, 12, 'J_interstellar.jpg', 'Le film raconte les aventures d’un groupe d’explorateurs qui utilisent une faille récemment découverte dans l’espace-temps afin de repousser les limites humaines et partir à la conquête des distances astronomiques dans un voyage interstellaire.'),
+(2, 'Taken 3', 'Olivier Megaton', 'EuropaCorp Distribution', '2015-01-15', 'Action', 20, 20, 'J_taken3.jpg', 'L?ex-agent sp?cial Bryan Mills voit son retour ? une vie tranquille boulevers? lorsqu?il est accus? ? tort du meurtre de son ex-femme, chez lui, ? Los Angeles. En fuite et traqu? par l?inspecteur Dotzler, Mills va devoir employer ses comp?tences particuli?res une derni?re fois pour trouver le v?ritable coupable, prouver son innocence et prot?ger la seule personne qui compte d?sormais pour lui ? sa fille.');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
