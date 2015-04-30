@@ -25,16 +25,7 @@ class Video{
 	}
 	
 	public function displayVideo($title, $realisateur, $studio, $parution, $genre, $stock, $price, $jaquette, $synopsis){
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$sql = $db->prepare('SELECT * FROM video');
 		$sql->execute();
 		while ($donnees=$sql->fetch()){
@@ -53,18 +44,23 @@ class Video{
 		return $table;
 	}
 	
+	public function displayVideoAdmin($title, $studio, $parution, $stock){
+		include('bdd.php');
+		$sql = $db->prepare('SELECT title, studio, parution, stock FROM video');
+		$sql->execute();
+		while ($donnees=$sql->fetch()){
+			$table=array(
+				'title' => $donnees['title'],
+				'studio' => $donnees['studio'],
+				'parution' => $donnees['parution'],
+				'stock' => $donnees['stock'],
+			);
+		}
+		return $table;
+	}
+	
 	public function addVideo($title, $realisateur, $studio, $parution, $genre, $stock, $price, $jaquette, $synopsis){
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
+		include('bdd.php');
 		$reqAddVideo = $db->prepare('INSERT INTO video(title, realisateur, studio, parution, genre, stock, price, jaquette, synopsis)
 				VALUES (:title, :realisateur, :studio, :parution, :genre, :stock, :price, :jaquette, :synopsis)');
 		$reqAddVideo->bindParam(':title', $this->title, PDO::PARAM_STR);
