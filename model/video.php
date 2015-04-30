@@ -24,7 +24,7 @@ class Video{
 		$this->synopsis = $synopsis;
 	}
 	
-	public function displayVideo($title, $realisateur, $studio, $parution, $genre, $stock, $price, $jaquette, $synopsis){
+	public static function displayVideo($title, $realisateur, $studio, $parution, $genre, $stock, $price, $jaquette, $synopsis){
 		include('bdd.php');
 		$sql = $db->prepare('SELECT * FROM video');
 		$sql->execute();

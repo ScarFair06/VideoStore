@@ -72,10 +72,10 @@ $app->post('/inscription', function () use ($app) {
    });*/
 
 $app->get('/videotech', function () use ($app) {
-    $tabVideo = Video::displayVideo();
+    /*$tabVideo = Video::displayVideo();
     json_encode($tabVideo);
     ?>
-    <?php
+    <?php*/
      $app->render('videotech.html');
      
    });
@@ -104,6 +104,10 @@ $app->get('/deconnexion', function () use ($app) {
    
 $app->get('/gestionvideo', function () use ($app) {
      $app->render('gestionvideo.php');
+   });
+   
+$app->get('/gestionclient', function () use ($app) {
+     $app->render('gestionclient.php');
    });
 
 
