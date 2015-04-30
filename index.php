@@ -89,7 +89,7 @@ $app->get('/video', function () use ($app) {
 $app->post('/video', function () use ($app) {
    
      $app->render('video.html');
-   
+	});
 $app->get('/video', function () use ($app) {
      $app->render('video.html');
    });
@@ -115,3 +115,4 @@ $app->get('/gestionvideo', function () use ($app) {
  * and returns the HTTP response to the HTTP client.
  */
 $app->run();
+?>
