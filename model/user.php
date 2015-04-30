@@ -14,9 +14,8 @@ Class User
 	private $magasin;
 	private $type;
 
-	public function __construct($id, $mail,$last_name, $first_name, $adresse, $cp, $city, $phone, $username, $password, $magasin)
+	public function __construct($mail,$last_name, $first_name, $adresse, $cp, $city, $phone, $username, $password, $magasin)
 	{
-		$this->id = $id;
 		$this->mail=$mail;
 		$this->last_name=$last_name;
 		$this->first_name=$first_name;
