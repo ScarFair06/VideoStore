@@ -24,7 +24,7 @@ class Video{
 		$this->synopsis = $synopsis;
 	}
 	
-	public function displayVideo($title, $realisateur, $studio, $parution, $genre, $stock, $price, $jaquette, $synopsis){
+	public static function displayVideo(){
 		try
 		{
 			$db = new PDO('mysql:host=localhost;dbname=videostore', 'root', '');
@@ -37,20 +37,7 @@ class Video{
 		}
 		$sql = $db->prepare('SELECT * FROM video');
 		$sql->execute();
-		while ($donnees=$sql->fetch()){
-			$table=array(
-				'title' => $donnees['title'],
-				'realisateur' => $donnees['realisateur'],
-				'studio' => $donnees['studio'],
-				'parution' => $donnees['parution'],
-				'genre' => $donnees['genre'],
-				'stock' => $donnees['stock'],
-				'price' => $donnees['price'],
-				'jaquette' => $donnees['jaquette'],
-				'synopsis' => $donnees['synopsis']
-			);
-		}
-		return $table;
+		return $sql;
 	}
 	
 	public function addVideo($title, $realisateur, $studio, $parution, $genre, $stock, $price, $jaquette, $synopsis){
@@ -66,7 +53,7 @@ class Video{
 			die('Erreur : ' . $e->getMessage());
 		}
 		$reqAddVideo = $db->prepare('INSERT INTO video(title, realisateur, studio, parution, genre, stock, price, jaquette, synopsis)
-				VALUES (:title, :realisateur, :studio, :parution, :genre, :stock, :price, :jaquette, :synopsis)');
+			VALUES (:title, :realisateur, :studio, :parution, :genre, :stock, :price, :jaquette, :synopsis)');
 		$reqAddVideo->bindParam(':title', $this->title, PDO::PARAM_STR);
 		$reqAddVideo->bindParam(':realisateur', $this->realisateur, PDO::PARAM_STR);
 		$reqAddVideo->bindParam(':studio', $this->studio, PDO::PARAM_STR);
@@ -81,5 +68,14 @@ class Video{
 		echo "la vidéo à bien été ajouté";
 	}
 
-}
-?>
+	public static function searchVideo($search){
+		include('bdd.php');
+		$request = NULL;
+		$request = $db->prepare('SELECT * FROM video WHERE title LIKE :search');
+		$flags = $arrayName = array(':search' => $search);
+		$request->execute($flags);
+		return json_encode($request); 
+		}
+
+	}
+	?>

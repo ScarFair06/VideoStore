@@ -8,6 +8,7 @@
  * If you are using Composer, you can skip this step.
  */
 require 'vendor/autoload.php';
+require 'model/video.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -37,7 +38,21 @@ $app->get('/', function () use ($app) {
   $app->render('/index.html');
 });
 
+$app->get('/index', function () use ($app) {
+  $app->render('/index_admin.html');
+});
+
+$app->get('/user', function () use ($app) {
+  $app->render('/user.html');
+});
+
 $app->get('/connexion', function () use ($app) {
+     $app->render('connexion.html');
+     
+   });
+
+$app->post('/connexion', function () use ($app) {
+      User::connexion($_POST['pseudo'], $_POST['password']);
      $app->render('connexion.html');
      
    });
@@ -47,9 +62,35 @@ $app->get('/inscription', function () use ($app) {
      
    });
 
-$app->get('/video', function () use ($app) {
+$app->post('/inscription', function () use ($app) {
+     $app->render('inscription.html');
+     
+   });
+
+
+/*$app->get('/video', function () use ($app) {
      $app->render('video.html');
      
+   });*/
+
+$app->get('/videotech', function () use ($app) {
+    $tabVideo = Video::displayVideo();
+    json_encode($tabVideo);
+    ?>
+    <?php
+     $app->render('videotech.html');
+     
+   });
+
+$app->get('/video', function () use ($app) {
+	if(isset($_GET['id'])){
+     $videoSearch = Video::searchVideo($_GET['id']);}
+     $app->render('video.html');
+   });
+
+$app->post('/video', function () use ($app) {
+   
+     $app->render('video.html');
    });
 
 
