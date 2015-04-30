@@ -112,10 +112,10 @@ Class User
 				$valeursParam = array(":stock"=>$stock, ":id"=>$id_video);
 				$sql->execute($valeursParam);
 
-			return json_encode(array('reponse'=>1));//OK
+				return json_encode(array('reponse'=>1));//OK
+			}
 		}
-	}
-		else { return json_encode(array('reponse'=>$0));} //KO
+		else { return json_encode(array('reponse'=>0));} //KO
 	}
 
 	public function dellLocation($id_reservation){

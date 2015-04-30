@@ -48,7 +48,6 @@ $app->get('/user', function () use ($app) {
 
 $app->get('/connexion', function () use ($app) {
      $app->render('connexion.html');
-     
    });
 
 $app->post('/connexion', function () use ($app) {
@@ -59,38 +58,6 @@ $app->post('/connexion', function () use ($app) {
 
 $app->get('/inscription', function () use ($app) {
      $app->render('inscription.html');
-     
-   });
-
-$app->post('/inscription', function () use ($app) {
-     $app->render('inscription.html');
-     
-   });
-
-
-/*$app->get('/video', function () use ($app) {
-     $app->render('video.html');
-     
-   });*/
-
-$app->get('/videotech', function () use ($app) {
-    $tabVideo = Video::displayVideo();
-    json_encode($tabVideo);
-    ?>
-    <?php
-     $app->render('videotech.html');
-     
-   });
-
-$app->get('/video', function () use ($app) {
-	if(isset($_GET['id'])){
-     $videoSearch = Video::searchVideo($_GET['id']);}
-     $app->render('video.html');
-   });
-
-$app->post('/video', function () use ($app) {
-   
-     $app->render('video.html');
    });
 
 
