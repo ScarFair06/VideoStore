@@ -39,17 +39,26 @@ $app->get('/', function () use ($app) {
 
 $app->get('/connexion', function () use ($app) {
      $app->render('connexion.html');
-     
    });
 
 $app->get('/inscription', function () use ($app) {
      $app->render('inscription.html');
-     
    });
-
+   
 $app->get('/video', function () use ($app) {
      $app->render('video.html');
-     
+   });
+
+$app->get('/administration', function () use ($app) {
+     $app->render('administration.php');
+   });
+   
+$app->get('/deconnexion', function () use ($app) {
+     $app->render('deconnexion.php');
+   });
+   
+$app->get('/gestionvideo', function () use ($app) {
+     $app->render('gestionvideo.php');
    });
 
 
