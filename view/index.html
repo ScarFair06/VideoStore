@@ -1,117 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>VideoStore</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>VideoStore</title>
 
-  <!-- CSS  -->
-  <link href="lib/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="lib/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!-- CSS  -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <div id="index-banner">
-    <div class="container">
-        <br />
-      <h1 class="header center">Bienvenue sur VideoStore</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Votre vidéostore à portée de main</h5>
-      </div>
-      <div class="row center">
-        <a href="videotech" id="download-button" class="btn-large waves-effect waves-light red lighten-3">Accéder à la vidéothèque</a>
-      </div>
-      <br><br>
+<nav class="blue lighten-2" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">VidaTech</a>
+        <ul id="slide-out" class="side-nav">
+            <li><a href="#!">Connexion</a></li>
+            <li><a href="#!">Inscription</a></li>
+            <li><a href="#!">Recherche</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
     </div>
-  </div>
-    
-   <!--  MENU 
-    <ul id="nav-mobile" class="side-nav fixed">
-    </ul>-->
-
-
-  <div class="container">
+</nav>
+<br />
+<div class="container">
     <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-image-flash-on"></i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
+        <div class="row">
+            <div class="col s12 m4 l3">
+                <div class="card-panel white center">
+                    <img class="materialboxed responsive-img z-depth-1" width="200" src="images/johnny_english_reborn.jpg">
+                    <div class="card-content grey-text">
+                        <p>
+                            Date de sortie : 19 octobre 2011
+                            <br />Réalisé par : Oliver Parker
+                            <br />Avec : Rowan Atkinson, Gillian Anderson, Dominic West plus
+                            <br />Genre : Comédie , Espionnage
+                            <br />Nationalité : Français , Américain , Britannique
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m8 l9">
+                <div class="card-panel white">
+                    <div class="card-content grey-text">
+                        <span class="card-title grey-text darken-1"><h5>Johnny English : Reborn</h5></span>
+                        <p>Ayant pris quelques années pour vivre retiré dans une région reculée d’Asie, Johnny English,
+                            le meilleur agent du MI7, en a profité pour perfectionner ses compétences uniques. Lorsque ses
+                            supérieurs apprennent que la vie du Premier ministre chinois est menacée, ils décident de le
+                            rappeler pour déjouer le complot. Si le monde a besoin de lui, Johnny English est prêt à
+                            reprendre du service… plus déjanté et déchaîné que jamais.</p>
+                        <p>À seulement quelques jours de
+                            la conférence internationale, English va devoir faire appel aux derniers gadgets hightech
+                            et à ses méthodes singulières pour enrayer l’infernale machination impliquant les Russes,
+                            la CIA et même le MI7… Enchaînant bourdes et catastrophes, Johnny English va tout tenter
+                            et même plus pour sauver le monde…</p>
+                    </div>
+                    <div class="card-action center">
+                        <a class="waves-effect waves-light btn"><i class="mdi-file-cloud right"></i>Réserver</a>
+                        <a class="waves-effect waves-light btn"><i class="mdi-file-cloud right"></i>Louer</a>
+                    </div>
+                </div>
+            </div>
+            <!--</div>-->
         </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-social-group"></i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="mdi-action-settings"></i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
-
     </div>
-    <br><br>
+</div>
 
-    <div class="section">
+<br><br>
 
-    </div>
-  </div>
-
-  <footer class="page-footer red lighten-2">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">VideoStore</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
+<footer class="page-footer blue lighten-2">
+    <div class="footer-copyright lighten-2">
+        <div class="container">
+            &copy; VidaTech
         </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="connexion">Connexion</a></li>
-            <li><a class="white-text" href="inscription">Inscription</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-    <div class="footer-copyright">
-      <div class="container">
-      &copy; VideoStore
-      </div>
-    </div>
-  </footer>
+</footer>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="lib/js/materialize.js"></script>
-  <script src="lib/js/init.js"></script>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
 
-
-  </body>
+</body>
 </html>
