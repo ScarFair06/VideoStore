@@ -10,29 +10,40 @@
 	<link href="lib/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#!" class="brand-logo">VideoStore</a>
-			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-			<ul class="right hide-on-med-and-down">
-				<li><a href="sass.html">Réservations</a></li>
-				<li><a href="sass.html">Stock</a></li>
-				<li><a href="sass.html">Mon compte</a></li>
-				<li><a href="components.html">Déconnxion</a></li>
-			</ul>
-			<ul class="side-nav" id="mobile-demo">				
-				<li><a href="sass.html">Réservations</a></li>
-				<li><a href="sass.html">Stock</a></li>
-				<li><a href="sass.html">Mon compte</a></li>
-				<li><a href="components.html">Déconnexion</a></li>
-			</ul>
+<nav class="blue lighten-2" role="navigation">
+	<div class="nav-wrapper container">
+		<a id="logo-container" href="#" class="brand-logo">VidaTech</a>
+		<ul id="slide-out" class="side-nav">
+			<li><a href="sass.html">Réservations</a></li>
+			<li><a href="sass.html">Stock</a></li>
+			<li><a href="sass.html">Mon compte</a></li>
+			<li><a href="components.html">Déconnxion</a></li>
+		</ul>
+		<a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+	</div>
+</nav>
+<br />
+<main>
+
+
+	<!-- CONTENT -->
+
+
+	<br><br>
+	</main>
+	<footer class="page-footer blue lighten-2">
+		<div class="footer-copyright lighten-2">
+			<div class="container">
+				&copy; VidaTech
+			</div>
 		</div>
-	</nav>
+	</footer>
 
 
 	<!--  Scripts-->
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="lib/js/materialize.js"></script>
 	<script src="lib/js/init.js"></script>
+
 </body>
 </html>
