@@ -10,45 +10,26 @@
     <link href="lib/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+<!-- Nav -->
+<nav class="blue lighten-2" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">VidaTech</a>
+        <ul id="slide-out" class="side-nav">
+            <li><a href="connexion">Connexion</a></li>
+            <li><a href="inscription">Inscription</a></li>
+            <li><a href="#!">Recherche</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+    </div>
+</nav>
 
-  <script src="http://code.jquery.com/jquery.min.js"></script>
-  <script type="text/javascript">
-
-  
-
-  function toto(name){
-        
-      $.getJSON(window.location.origin + "/videoStore/videojson?title=" + name, function(data)
-      {alert('toto');
-        //On passe sur chaque film
-        $.each( data, function(key, val)
-        {
-            jQuery('h5').text(val.title);
-            //On passe sur chaque champ du film
-            $.each(val, function(key2, val2)
-            {
-                alert(key2 + ':' + val2); //On alert le champ pour faire du debug
-            });
-        });
-    });
-  };
-
-  </script>
-
- 
-  <br />
-  <button onclick="toto('Interstellar')">tj'oiythu</button>
-
-    <input type="text" id="search" placeholder="Recherche">
-
-   
-
+<main>
 <div class="container">
     <div class="section">
         <div class="row">
             <div class="col s12 m4 l3">
                 <div class="card-panel white center">
-                    <img class="materialboxed responsive-img z-depth-1" width="200" src="images/johnny_english_reborn.jpg">
+                    <img class="materialboxed responsive-img z-depth-1" width="200" src="lib/images/johnny_english_reborn.jpg">
                     <div class="card-content grey-text">
                         <p>
                             Date de sortie : 19 octobre 2011
@@ -69,40 +50,38 @@
                             supérieurs apprennent que la vie du Premier ministre chinois est menacée, ils décident de le
                             rappeler pour déjouer le complot. Si le monde a besoin de lui, Johnny English est prêt à
                             reprendre du service… plus déjanté et déchaîné que jamais.</p>
-                            <p>À seulement quelques jours de
-                                la conférence internationale, English va devoir faire appel aux derniers gadgets hightech
-                                et à ses méthodes singulières pour enrayer l’infernale machination impliquant les Russes,
-                                la CIA et même le MI7… Enchaînant bourdes et catastrophes, Johnny English va tout tenter
-                                et même plus pour sauver le monde…</p>
-                            </div>
-                            <div class="card-action center">
-                                <a class="waves-effect waves-light btn"><i class="mdi-file-cloud right"></i>Réserver</a>
-                                <a class="waves-effect waves-light btn"><i class="mdi-file-cloud right"></i>Louer</a>
-                            </div>
-                        </div>
+                        <p>À seulement quelques jours de
+                            la conférence internationale, English va devoir faire appel aux derniers gadgets hightech
+                            et à ses méthodes singulières pour enrayer l’infernale machination impliquant les Russes,
+                            la CIA et même le MI7… Enchaînant bourdes et catastrophes, Johnny English va tout tenter
+                            et même plus pour sauver le monde…</p>
                     </div>
-                    <!--</div>-->
+                    <div class="card-action center">
+                        <a class="waves-effect waves-light btn"><i class="mdi-file-cloud right"></i>Réserver</a>
+                        <a class="waves-effect waves-light btn"><i class="mdi-file-cloud right"></i>Louer</a>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <br><br>
+<br><br>
 
-        <footer class="page-footer blue lighten-2">
-            <div class="footer-copyright lighten-2">
-                <div class="container">
-                    &copy; VidaTech
-                </div>
-            </div>
-        </footer>
+</main>
+<footer class="page-footer blue lighten-2">
+    <div class="footer-copyright lighten-2">
+        <div class="container">
+            &copy; VidaTech
+        </div>
+    </div>
+</footer>
 
 
-        <!--  Scripts-->
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="lib/js/materialize.js"></script>
+<script src="lib/js/init.js"></script>
 
-        <script type="text/javascript" scr="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="lib/js/materialize.js"></script>
-        <script src="lib/js/init.js"></script>
-
-    </body>
-    </html>
+</body>
+</html>

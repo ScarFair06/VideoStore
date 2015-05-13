@@ -9,9 +9,7 @@
  */
 require 'vendor/autoload.php';
 require 'model/video.php';
-
 \Slim\Slim::registerAutoloader();
-
 /**
  * Step 2: Instantiate a Slim application
  *
@@ -21,7 +19,6 @@ require 'model/video.php';
  * of setting names and values into the application constructor.
  */
 $app = new \Slim\Slim();
-
 /**
  * Step 3: Define the Slim application routes
  *
@@ -32,57 +29,30 @@ $app = new \Slim\Slim();
  */
 $view = $app->view();
 $view->setTemplatesDirectory('view');
-
 // GET route
 $app->get('/', function () use ($app) {
-  include('/view/menu.html');?>
- 
-
-    <?php
-  $app->render('/index.html');
+  $app->render('index.html');
 });
-
 $app->get('/index', function () use ($app) {
-  include('/view/menu.html');
-  $app->render('/index_admin.html');
+  $app->render('index_admin.html');
 });
-
 $app->get('/user', function () use ($app) {
-  include('/view/menu.html');
-  $app->render('/user.html');
+  $app->render('user.html');
 });
-
 $app->get('/connexion', function () use ($app) {
-  include('/view/menu.html');
      $app->render('connexion.html');
-   });
-
-$app->post('/connexion', function () use ($app) {
-  include('/view/menu.html');
-      User::connexion($_POST['pseudo'], $_POST['password']);
-     $app->render('connexion.html');
-     
-   });
-
+});
 $app->get('/inscription', function () use ($app) {
-  include('/view/menu.html');
      $app->render('inscription.html');
-   });
-
+});
 $app->post('/inscription', function () use ($app) {
-  include('/view/menu.html');
      $app->render('inscription.html');
-     
-   });
-
-
-/*$app->get('/video', function () use ($app) {
+});
+$app->get('/video', function () use ($app) {
      $app->render('video.html');
      
-   });*/
-
+   });
 $app->get('/videotech', function () use ($app) {
-  include('/view/menu.html');
     /*$tabVideo = Video::displayVideo();
     json_encode($tabVideo);
     ?>
@@ -90,53 +60,38 @@ $app->get('/videotech', function () use ($app) {
      $app->render('videotech.html');
      
    });
-
 $app->get('/video', function () use ($app) {
-  include('/view/menu.html');
-	if(isset($_GET['id'])){
+  if(isset($_GET['id'])){
      $videoSearch = Video::searchVideo($_GET['id']);}
      $app->render('video.html');
    });
-
-$app->get('/videojson', function () use ($app) {
-  if(isset($_GET['title'])){
-     $videoSearch = Video::searchVideo($_GET['title']);}
-     $response = $app->response();
-     $response['Content-Type'] = 'application/json';
-     return $response->body($videoSearch);
-   });
-
 $app->post('/video', function () use ($app) {
-  include('/view/menu.html');
    
      $app->render('video.html');
-	});
+  });
 $app->get('/video', function () use ($app) {
-  include('/view/menu.html');
      $app->render('video.html');
    });
-
 $app->get('/administration', function () use ($app) {
-  include('/view/menu.html');
      $app->render('administration.php');
    });
    
 $app->get('/deconnexion', function () use ($app) {
-  include('/view/menu.html');
      $app->render('deconnexion.php');
    });
    
 $app->get('/gestionvideo', function () use ($app) {
-  include('/view/menu.html');
      $app->render('gestionvideo.php');
    });
    
 $app->get('/gestionclient', function () use ($app) {
-  include('/view/menu.html');
      $app->render('gestionclient.php');
    });
 
-
+$app->post('/connexion', function () use ($app) {
+  $tocken = User::connexion($_POST['pseudo'], $_POST['mdp']); 
+  //$verif = User::verifTocken($tocken, $id);
+   });
 
 /**
  * Step 4: Run the Slim application
