@@ -70,7 +70,8 @@ class Video{
 		$request = $db->prepare('SELECT * FROM video WHERE title LIKE :search');
 		$flags = $arrayName = array(':search' => $search);
 		$request->execute($flags);
-		return json_encode($request); 
+		$return = $request->fetchAll();
+		return json_encode($return); 
 		}
 
 	}

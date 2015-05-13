@@ -35,32 +35,42 @@ $view->setTemplatesDirectory('view');
 
 // GET route
 $app->get('/', function () use ($app) {
+  include('/view/menu.html');?>
+ 
+
+    <?php
   $app->render('/index.html');
 });
 
 $app->get('/index', function () use ($app) {
+  include('/view/menu.html');
   $app->render('/index_admin.html');
 });
 
 $app->get('/user', function () use ($app) {
+  include('/view/menu.html');
   $app->render('/user.html');
 });
 
 $app->get('/connexion', function () use ($app) {
+  include('/view/menu.html');
      $app->render('connexion.html');
    });
 
 $app->post('/connexion', function () use ($app) {
+  include('/view/menu.html');
       User::connexion($_POST['pseudo'], $_POST['password']);
      $app->render('connexion.html');
      
    });
 
 $app->get('/inscription', function () use ($app) {
+  include('/view/menu.html');
      $app->render('inscription.html');
    });
 
 $app->post('/inscription', function () use ($app) {
+  include('/view/menu.html');
      $app->render('inscription.html');
      
    });
@@ -72,6 +82,7 @@ $app->post('/inscription', function () use ($app) {
    });*/
 
 $app->get('/videotech', function () use ($app) {
+  include('/view/menu.html');
     /*$tabVideo = Video::displayVideo();
     json_encode($tabVideo);
     ?>
@@ -81,32 +92,47 @@ $app->get('/videotech', function () use ($app) {
    });
 
 $app->get('/video', function () use ($app) {
+  include('/view/menu.html');
 	if(isset($_GET['id'])){
      $videoSearch = Video::searchVideo($_GET['id']);}
      $app->render('video.html');
    });
 
+$app->get('/videojson', function () use ($app) {
+  if(isset($_GET['title'])){
+     $videoSearch = Video::searchVideo($_GET['title']);}
+     $response = $app->response();
+     $response['Content-Type'] = 'application/json';
+     return $response->body($videoSearch);
+   });
+
 $app->post('/video', function () use ($app) {
+  include('/view/menu.html');
    
      $app->render('video.html');
 	});
 $app->get('/video', function () use ($app) {
+  include('/view/menu.html');
      $app->render('video.html');
    });
 
 $app->get('/administration', function () use ($app) {
+  include('/view/menu.html');
      $app->render('administration.php');
    });
    
 $app->get('/deconnexion', function () use ($app) {
+  include('/view/menu.html');
      $app->render('deconnexion.php');
    });
    
 $app->get('/gestionvideo', function () use ($app) {
+  include('/view/menu.html');
      $app->render('gestionvideo.php');
    });
    
 $app->get('/gestionclient', function () use ($app) {
+  include('/view/menu.html');
      $app->render('gestionclient.php');
    });
 

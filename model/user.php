@@ -52,7 +52,7 @@ Class User
 			$sql=$db->prepare('UPDATE client SET token = :token WHERE id = :id');
 			$valeursParam = array(":token"=>$token,":id"=>$columns['id']);
 			$sql->execute($valeursParam);
-			return $token;
+			return json_encode(array('token' =>$token));
 		}
 		$sql='SELECT * FROM employee WHERE username = :username AND password = :password';
 		$valeursParam = array(":username"=>$username,":password"=>$password);
