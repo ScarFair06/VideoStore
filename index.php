@@ -35,41 +35,39 @@ $view->setTemplatesDirectory('view');
 
 // GET route
 $app->get('/', function () use ($app) {
-  $app->render('/index.html');
+  $app->render('index.html');
 });
 
 $app->get('/index', function () use ($app) {
-  $app->render('/index_admin.html');
+  $app->render('index_admin.html');
 });
 
 $app->get('/user', function () use ($app) {
-  $app->render('/user.html');
+  $app->render('user.html');
 });
 
 $app->get('/connexion', function () use ($app) {
      $app->render('connexion.html');
-   });
+});
 
 $app->post('/connexion', function () use ($app) {
       User::connexion($_POST['pseudo'], $_POST['password']);
      $app->render('connexion.html');
-     
-   });
+});
 
 $app->get('/inscription', function () use ($app) {
      $app->render('inscription.html');
-   });
+});
 
 $app->post('/inscription', function () use ($app) {
      $app->render('inscription.html');
-     
-   });
+});
 
 
-/*$app->get('/video', function () use ($app) {
+$app->get('/video', function () use ($app) {
      $app->render('video.html');
      
-   });*/
+   });
 
 $app->get('/videotech', function () use ($app) {
     /*$tabVideo = Video::displayVideo();
